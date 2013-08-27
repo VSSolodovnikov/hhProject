@@ -23,22 +23,21 @@ public class MainActivity extends FragmentActivity {
 	
 	EditText mEdit;
 
-	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
-        
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.sex_array, android.R.layout.simple_spinner_item);
-    	adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     	Spinner spinner = (Spinner) findViewById(R.id.sex_spinner);
     	spinner.setAdapter(adapter);
     	spinner.setPrompt("Пол");
     	spinner.setSelection(0);
-        
-    	
+
     }
+    
     
 	public void selectDate(View view) {
 		DialogFragment newFragment = new SelectDateFragment();
@@ -62,7 +61,7 @@ public class MainActivity extends FragmentActivity {
 	public void sendMessage(View view) {
        
     	Intent intent = new Intent(this, DisplayMessageActivity.class);
-    	EditText editText = (EditText) findViewById(R.id.edit_message);
+    	EditText editText = (EditText) findViewById(R.id.fio);
     	String message = editText.getText().toString();
     	intent.putExtra(EXTRA_MESSAGE, message);
     	startActivity(intent);

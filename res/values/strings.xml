@@ -3,7 +3,7 @@
 
     <string name="app_name">My First App</string>
     <string name="action_settings">Settings</string>
-    <string name="button_send">Send</string>
+    <string name="button_send">Отправить резюме</string>
     <string name="edit_message">Enter a message</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_display_message">My Message</string>
@@ -11,7 +11,11 @@
  	<string name="full_name">Фамилия Имя Отчество</string>
  	<string name="born_date">Дата рождения</string>
 	<string name="sex">Пол</string>
-	
+	<string name="dolg">Должность</string>
+	<string name="salary">Зарплата</string>
+	<string name="phone">Номер телефона</string>
+	<string name="email">E-Mail</string>
+		
 	<string-array name="sex_array">
         <item>Мужской</item>
         <item>Женский</item>

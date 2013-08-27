@@ -5,30 +5,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <TextView
+    <EditText
         android:id="@+id/fio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/full_name" />
-
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="@string/full_name"
         android:inputType="textCapWords" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
-
-        <TextView
-            android:id="@+id/bornDateText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:onClick="selectDate"
-            android:text="@string/born_date" />
 
         <EditText
             android:id="@+id/bornDate"
@@ -38,6 +25,7 @@
             android:ems="10" 
             android:inputType="date"
             android:clickable="true"
+            android:hint="@string/born_date"
             android:onClick="selectDate" />
 
         <ImageButton
@@ -63,14 +51,42 @@
             android:id="@+id/sex_spinner"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:prompt="@string/sex" />
 
     </LinearLayout>
 
-    <EditText android:id="@+id/edit_message"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/edit_message" />
+        android:ems="10" 
+        android:hint="@string/dolg"
+        android:inputType="textCapSentences" />
+
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10" 
+        android:hint="@string/salary"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/editText4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/phone"
+        android:inputType="phone" />
+
+    <EditText
+        android:id="@+id/editText5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress" />
 
     <Button
         android:layout_width="wrap_content"
