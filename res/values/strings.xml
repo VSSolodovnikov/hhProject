@@ -15,6 +15,11 @@
 	<string name="salary">Зарплата</string>
 	<string name="phone">Номер телефона</string>
 	<string name="email">E-Mail</string>
+	<string name="answer">Ответ соискателю:</string>
+	<string name="answerButtonText">Отправить ответ</string>
+	<string name="answerDialogTitle">Ответ работодателя</string>
+	<string name="yes">Ок</string>
+
 		
 	<string-array name="sex_array">
         <item>Мужской</item>

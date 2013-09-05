@@ -3,11 +3,15 @@ package com.example.myfirstapp;
 import java.util.Calendar;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 // import android.widget.ArrayAdapter;
@@ -19,8 +23,10 @@ import android.support.v4.app.DialogFragment;
 @SuppressLint({ "ValidFragment", "NewApi" })
 public class MainActivity extends FragmentActivity {
 
-	public final static String FIO = "com.example.myfirstapp.MESSAGE";
-	public final static String BORN_DATE = "com.example.myfirstapp.MESSAGE";
+//	public final static String FIO = "com.example.myfirstapp.MESSAGE";
+//	public final static String BORN_DATE = "com.example.myfirstapp.MESSAGE";
+	static final private int GET_ANSWER = 0;
+	public static String hhAnswer = "Принято";
 	
 	EditText mEdit;
 
@@ -86,8 +92,26 @@ public class MainActivity extends FragmentActivity {
     	EditText editEmail = (EditText) findViewById(R.id.email);
     	intent.putExtra("email", editEmail.getText().toString());
     	
-    	startActivity(intent);
+    	startActivityForResult(intent, GET_ANSWER);
 	
+    }
+    
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    	// TODO Auto-generated method stub
+    	super.onActivityResult(requestCode, resultCode, data);
+
+    	if (requestCode == GET_ANSWER) {
+    		if (resultCode == RESULT_OK) {
+    			hhAnswer = data.getStringExtra(DisplayMessageActivity.HH_ANSWER);
+    			//hhAnswer = 
+    			DialogFragment newFragment = new ShowAnswerFragment();
+    			newFragment.show(getSupportFragmentManager(), "DatePicker");
+    		}else {
+    		//	DialogFragment newFragment = new SelectDateFragment();
+    		//	newFragment.show(getSupportFragmentManager(), "DatePicker");
+    		}
+    	}
     }
     
     public class SelectDateFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
@@ -105,5 +129,43 @@ public class MainActivity extends FragmentActivity {
     	populateSetDate(yy, mm+1, dd);
     	}
     }
+    
+    public class ShowAnswerFragment extends DialogFragment implements OnClickListener {
+
+    	  final String LOG_TAG = "myLogs";
+
+    	  public Dialog onCreateDialog(Bundle savedInstanceState) {
+    		
+    	//	Intent intent = getIntent();
+    	//	String answer = intent.getStringExtra(DisplayMessageActivity.HH_ANSWER);
+    		
+    	    AlertDialog.Builder adb = new AlertDialog.Builder(getActivity())
+    	        .setTitle(R.string.answerDialogTitle).setPositiveButton(R.string.yes, this)
+    	        .setMessage(hhAnswer);
+    	    return adb.create();
+    	  }
+
+    	  public void onClick(DialogInterface dialog, int which) {
+    	    int i = 0;
+    	    switch (which) {
+    	    case Dialog.BUTTON_POSITIVE:
+    	      i = R.string.yes;
+    	      break;
+
+    	    }
+    	    if (i > 0)
+    	      Log.d(LOG_TAG, "Dialog 2: " + getResources().getString(i));
+    	  }
+
+    	  public void onDismiss(DialogInterface dialog) {
+    	    super.onDismiss(dialog);
+    	    Log.d(LOG_TAG, "Dialog 2: onDismiss");
+    	  }
+
+    	  public void onCancel(DialogInterface dialog) {
+    	    super.onCancel(dialog);
+    	    Log.d(LOG_TAG, "Dialog 2: onCancel");
+    	  }
+    	}
     
 }

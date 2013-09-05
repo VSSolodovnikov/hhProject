@@ -33,17 +33,20 @@ public final class R {
         public static final int TextView04=0x7f090008;
         public static final int TextView05=0x7f09000a;
         public static final int TextView06=0x7f09000c;
-        public static final int action_settings=0x7f090012;
-        public static final int bornDate=0x7f09000f;
+        public static final int TextView07=0x7f09000e;
+        public static final int action_settings=0x7f090015;
+        public static final int bornDate=0x7f090012;
+        public static final int button1=0x7f090010;
         public static final int dateOfBorn=0x7f090003;
         public static final int dolg=0x7f090007;
+        public static final int edAnswer=0x7f09000f;
         public static final int email=0x7f09000d;
-        public static final int fio=0x7f09000e;
-        public static final int imageButton1=0x7f090010;
+        public static final int fio=0x7f090011;
+        public static final int imageButton1=0x7f090013;
         public static final int phone=0x7f09000b;
         public static final int salary=0x7f090009;
         public static final int sex=0x7f090005;
-        public static final int sex_spinner=0x7f090011;
+        public static final int sex_spinner=0x7f090014;
         public static final int textViewFio=0x7f090001;
         public static final int textViewFioN=0x7f090000;
     }
@@ -57,6 +60,9 @@ public final class R {
     }
     public static final class string {
         public static final int action_settings=0x7f050001;
+        public static final int answer=0x7f05000e;
+        public static final int answerButtonText=0x7f05000f;
+        public static final int answerDialogTitle=0x7f050010;
         public static final int app_name=0x7f050000;
         public static final int born_date=0x7f050008;
         public static final int button_send=0x7f050002;
@@ -70,6 +76,7 @@ public final class R {
         public static final int sex=0x7f050009;
         public static final int title_activity_display_message=0x7f050005;
         public static final int title_activity_main=0x7f050004;
+        public static final int yes=0x7f050011;
     }
     public static final class style {
         /** 

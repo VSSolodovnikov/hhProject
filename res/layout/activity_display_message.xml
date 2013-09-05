@@ -1,13 +1,13 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    tools:context=".DisplayMessageActivity"
-    >
+    android:layout_height="wrap_content"
+    android:fillViewport="true"
+    tools:context=".DisplayMessageActivity" >
 
 <RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="350dp"
+    android:layout_height="445dp"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -123,6 +123,37 @@
         android:layout_alignLeft="@+id/phone"
         android:layout_below="@+id/TextView06"
         android:text="@string/hello_world" />
+
+    <TextView
+        android:id="@+id/TextView07"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/TextView06"
+        android:layout_below="@+id/email"
+        android:text="@string/answer" />
+
+    <EditText
+        android:id="@+id/edAnswer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/TextView07"
+        android:layout_below="@+id/TextView07"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:minLines="5" >
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/email"
+        android:layout_below="@+id/edAnswer"
+        android:layout_marginTop="16dp"
+        android:onClick="sendAnswer"
+        android:text="@string/answerButtonText" />
 
 </RelativeLayout>
 </ScrollView>

@@ -4,14 +4,19 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.support.v4.app.NavUtils;
+import android.text.util.Linkify;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Build;
 
 public class DisplayMessageActivity extends Activity {
 
+	public final static String HH_ANSWER = "Принято";
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -49,13 +54,28 @@ public class DisplayMessageActivity extends Activity {
 	    TextView gettedPhone = (TextView)findViewById(R.id.phone);
 	    gettedPhone.setTextSize(30);
 	    gettedPhone.setText(phone);
+	    Linkify.addLinks(gettedPhone, Linkify.ALL);
 	    
 	    String email = intent.getStringExtra("email");
 	    TextView gettedEmail = (TextView)findViewById(R.id.email);
 	    gettedEmail.setTextSize(30);
 	    gettedEmail.setText(email);
+	    Linkify.addLinks(gettedEmail, Linkify.ALL);
 	    
 	    
+	}
+	
+	public void sendAnswer(View v) {
+		Intent answerInent = new Intent();
+
+		EditText editAnswer = (EditText) findViewById(R.id.edAnswer);
+    //	intent.putExtra("salary", editSalary.getText().toString());
+    	
+		answerInent.putExtra(HH_ANSWER, editAnswer.getText().toString());
+		
+
+		setResult(RESULT_OK, answerInent);
+		finish();
 	}
 
 	/**
