@@ -19,16 +19,43 @@ public class DisplayMessageActivity extends Activity {
 
 	    // Get the message from the intent
 	    Intent intent = getIntent();
-	    String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+	    
+	    String fio = intent.getStringExtra("fio");
+	    TextView gettedFIO = (TextView)findViewById(R.id.textViewFio);
+	    gettedFIO.setTextSize(30);
+	    gettedFIO.setText(fio);
+	    
+	    String bornDate = intent.getStringExtra("bornDate");
+	    TextView gettedBornDate = (TextView)findViewById(R.id.dateOfBorn);
+	    gettedBornDate.setTextSize(30);
+	    gettedBornDate.setText(bornDate);
+	    
+	    String sex = intent.getStringExtra("sex");
+	    TextView gettedSex = (TextView)findViewById(R.id.sex);
+	    gettedSex.setTextSize(30);
+	    gettedSex.setText(sex);
+	    
+	    String dolg = intent.getStringExtra("dolg");
+	    TextView gettedDolg = (TextView)findViewById(R.id.dolg);
+	    gettedDolg.setTextSize(30);
+	    gettedDolg.setText(dolg);
 
-	    // Create the text view
-	    TextView textView = new TextView(this);
-	    textView.setTextSize(40);
-	    textView.setText(message);
-
-	    // Set the text view as the activity layout
-	    setContentView(textView);
-
+	    String salary = intent.getStringExtra("salary");
+	    TextView gettedSalary = (TextView)findViewById(R.id.salary);
+	    gettedSalary.setTextSize(30);
+	    gettedSalary.setText(salary);
+	    
+	    String phone = intent.getStringExtra("phone");
+	    TextView gettedPhone = (TextView)findViewById(R.id.phone);
+	    gettedPhone.setTextSize(30);
+	    gettedPhone.setText(phone);
+	    
+	    String email = intent.getStringExtra("email");
+	    TextView gettedEmail = (TextView)findViewById(R.id.email);
+	    gettedEmail.setTextSize(30);
+	    gettedEmail.setText(email);
+	    
+	    
 	}
 
 	/**

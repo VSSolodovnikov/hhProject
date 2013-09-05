@@ -1,16 +1,128 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context=".DisplayMessageActivity"
+    >
+
+<RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="350dp"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".DisplayMessageActivity" >
+    android:paddingTop="@dimen/activity_vertical_margin" >
 
     <TextView
+        android:id="@+id/textViewFioN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/full_name" />
+
+    <TextView
+        android:id="@+id/textViewFio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textViewFioN"
+        android:layout_below="@+id/textViewFioN"
+        android:layout_marginLeft="19dp"
+        android:text="@string/hello_world" />
+
+    <TextView
+        android:id="@+id/TextView01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textViewFioN"
+        android:layout_below="@+id/textViewFio"
+        android:text="@string/born_date" />
+
+    <TextView
+        android:id="@+id/dateOfBorn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textViewFio"
+        android:layout_below="@+id/TextView01"
+        android:text="@string/hello_world" />
+
+    <TextView
+        android:id="@+id/TextView02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/TextView01"
+        android:layout_below="@+id/dateOfBorn"
+        android:text="@string/sex" />
+
+    <TextView
+        android:id="@+id/sex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/dateOfBorn"
+        android:layout_below="@+id/TextView02"
+        android:text="@string/hello_world" />
+
+    <TextView
+        android:id="@+id/TextView03"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/TextView02"
+        android:layout_below="@+id/sex"
+        android:text="@string/dolg" />
+
+    <TextView
+        android:id="@+id/dolg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/sex"
+        android:layout_below="@+id/TextView03"
+        android:text="@string/hello_world" />
+
+    <TextView
+        android:id="@+id/TextView04"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/TextView03"
+        android:layout_below="@+id/dolg"
+        android:text="@string/salary" />
+
+    <TextView
+        android:id="@+id/salary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/dolg"
+        android:layout_below="@+id/TextView04"
+        android:text="@string/hello_world" />
+
+    <TextView
+        android:id="@+id/TextView05"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/TextView04"
+        android:layout_below="@+id/salary"
+        android:text="@string/phone" />
+
+    <TextView
+        android:id="@+id/phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/salary"
+        android:layout_below="@+id/TextView05"
+        android:text="@string/hello_world" />
+
+    <TextView
+        android:id="@+id/TextView06"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/TextView05"
+        android:layout_below="@+id/phone"
+        android:text="@string/email" />
+
+    <TextView
+        android:id="@+id/email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/phone"
+        android:layout_below="@+id/TextView06"
         android:text="@string/hello_world" />
 
 </RelativeLayout>
+</ScrollView>

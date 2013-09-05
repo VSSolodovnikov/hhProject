@@ -10,7 +10,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.View;
-import android.widget.ArrayAdapter;
+// import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -19,7 +19,8 @@ import android.support.v4.app.DialogFragment;
 @SuppressLint({ "ValidFragment", "NewApi" })
 public class MainActivity extends FragmentActivity {
 
-	public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
+	public final static String FIO = "com.example.myfirstapp.MESSAGE";
+	public final static String BORN_DATE = "com.example.myfirstapp.MESSAGE";
 	
 	EditText mEdit;
 
@@ -28,13 +29,13 @@ public class MainActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.sex_array, android.R.layout.simple_spinner_item);
+//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.sex_array, android.R.layout.simple_spinner_item);
 
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-    	Spinner spinner = (Spinner) findViewById(R.id.sex_spinner);
-    	spinner.setAdapter(adapter);
-    	spinner.setPrompt("Пол");
-    	spinner.setSelection(0);
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//    	Spinner spinner = (Spinner) findViewById(R.id.sex_spinner);
+//    	spinner.setAdapter(adapter);
+//    	spinner.setPrompt("Пол");
+//   	spinner.setSelection(0);
 
     }
     
@@ -46,7 +47,7 @@ public class MainActivity extends FragmentActivity {
 	
 	public void populateSetDate(int year, int month, int day) {
 		mEdit = (EditText)findViewById(R.id.bornDate);
-		mEdit.setText(month+"/"+day+"/"+year);
+		mEdit.setText(day+"."+month+"."+year);
 	}
 
     @Override
@@ -61,9 +62,30 @@ public class MainActivity extends FragmentActivity {
 	public void sendMessage(View view) {
        
     	Intent intent = new Intent(this, DisplayMessageActivity.class);
-    	EditText editText = (EditText) findViewById(R.id.fio);
-    	String message = editText.getText().toString();
-    	intent.putExtra(EXTRA_MESSAGE, message);
+    	
+    	
+    	
+    	EditText editFio = (EditText) findViewById(R.id.fio);
+    	intent.putExtra("fio", editFio.getText().toString());
+ 
+    	EditText editBornDate = (EditText) findViewById(R.id.bornDate);
+    	intent.putExtra("bornDate", editBornDate.getText().toString());
+
+    	Spinner spinner = (Spinner) findViewById(R.id.sex_spinner);
+    	intent.putExtra("sex", spinner.getSelectedItem().toString());
+    	
+    	EditText editDolg = (EditText) findViewById(R.id.dolg);
+    	intent.putExtra("dolg", editDolg.getText().toString());
+
+    	EditText editSalary = (EditText) findViewById(R.id.salary);
+    	intent.putExtra("salary", editSalary.getText().toString());
+ 
+    	EditText editPhone = (EditText) findViewById(R.id.phone);
+    	intent.putExtra("phone", editPhone.getText().toString());
+    	
+    	EditText editEmail = (EditText) findViewById(R.id.email);
+    	intent.putExtra("email", editEmail.getText().toString());
+    	
     	startActivity(intent);
 	
     }

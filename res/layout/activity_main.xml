@@ -52,12 +52,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:entries="@array/sex_array"
             android:prompt="@string/sex" />
 
     </LinearLayout>
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/dolg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10" 
@@ -65,7 +66,7 @@
         android:inputType="textCapSentences" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/salary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10" 
@@ -73,7 +74,7 @@
         android:inputType="number" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -81,7 +82,7 @@
         android:inputType="phone" />
 
     <EditText
-        android:id="@+id/editText5"
+        android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
