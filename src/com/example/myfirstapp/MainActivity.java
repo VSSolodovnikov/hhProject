@@ -1,6 +1,8 @@
 package com.example.myfirstapp;
 
 import java.util.Calendar;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -18,13 +20,12 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 import android.support.v4.app.DialogFragment;
 
 @SuppressLint({ "ValidFragment", "NewApi" })
 public class MainActivity extends FragmentActivity {
 
-//	public final static String FIO = "com.example.myfirstapp.MESSAGE";
-//	public final static String BORN_DATE = "com.example.myfirstapp.MESSAGE";
 	static final private int GET_ANSWER = 0;
 	public static String hhAnswer = "Принято";
 	
@@ -35,12 +36,11 @@ public class MainActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
-//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.sex_array, android.R.layout.simple_spinner_item);
+//      ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.sex_array, android.R.layout.simple_spinner_item);
 
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//      adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 //    	Spinner spinner = (Spinner) findViewById(R.id.sex_spinner);
 //    	spinner.setAdapter(adapter);
-//    	spinner.setPrompt("Пол");
 //   	spinner.setSelection(0);
 
     }
@@ -58,7 +58,6 @@ public class MainActivity extends FragmentActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
@@ -68,29 +67,101 @@ public class MainActivity extends FragmentActivity {
 	public void sendMessage(View view) {
        
     	Intent intent = new Intent(this, DisplayMessageActivity.class);
-    	
-    	
-    	
+    	// проверка ввода и перадача ФИО
     	EditText editFio = (EditText) findViewById(R.id.fio);
-    	intent.putExtra("fio", editFio.getText().toString());
- 
+    	if (editFio.getText().toString().equals(""))
+    	{
+    		Toast.makeText(this, "Вы не ввели Фамилию Имя Отчество", Toast.LENGTH_SHORT).show();
+    		editFio.requestFocus();
+    	    return;
+    	}
+    	else
+    	{
+    		intent.putExtra("fio", editFio.getText().toString());
+    	}
+    	// проверка ввода и перадача Даты рождения
     	EditText editBornDate = (EditText) findViewById(R.id.bornDate);
-    	intent.putExtra("bornDate", editBornDate.getText().toString());
+    	if (editBornDate.getText().toString().equals(""))
+    	{
+    		Toast.makeText(this, "Вы не ввели Дату рождения", Toast.LENGTH_SHORT).show();
+    		selectDate((View) findViewById(R.id.bornDate));
+    	    return;
+    	}
+    	else
+    	{
+    		intent.putExtra("bornDate", editBornDate.getText().toString());
+    	}
+    	
 
     	Spinner spinner = (Spinner) findViewById(R.id.sex_spinner);
     	intent.putExtra("sex", spinner.getSelectedItem().toString());
     	
+    	// проверка ввода и перадача Должности
     	EditText editDolg = (EditText) findViewById(R.id.dolg);
-    	intent.putExtra("dolg", editDolg.getText().toString());
-
+    	if (editDolg.getText().toString().equals(""))
+    	{
+    		Toast.makeText(this, "Вы не ввели Должность", Toast.LENGTH_SHORT).show();
+    		editDolg.requestFocus();
+    	    return;
+    	}
+    	else
+    	{
+    		intent.putExtra("dolg", editDolg.getText().toString());
+    	}
+    	
+    	
+    	// проверка ввода и перадача Должности
     	EditText editSalary = (EditText) findViewById(R.id.salary);
-    	intent.putExtra("salary", editSalary.getText().toString());
- 
+    	if (editSalary.getText().toString().equals(""))
+    	{
+    		Toast.makeText(this, "Вы не ввели Зарплату", Toast.LENGTH_SHORT).show();
+    		editSalary.requestFocus();
+    	    return;
+    	}
+    	else
+    	{
+    		intent.putExtra("salary", editSalary.getText().toString());
+    	}
+    	
     	EditText editPhone = (EditText) findViewById(R.id.phone);
-    	intent.putExtra("phone", editPhone.getText().toString());
+    	if (editPhone.getText().toString().equals(""))
+    	{
+    		Toast.makeText(this, "Вы не ввели Номер телефона", Toast.LENGTH_SHORT).show();
+    		editPhone.requestFocus();
+    	    return;
+    	}
+    	else
+    	{	
+    		if (isPhoneValid(editPhone.getText().toString())) {
+    			intent.putExtra("phone", editPhone.getText().toString());
+    		} else {
+    			Toast.makeText(this, "Вы ввели не корректный номер телефона "+"\n"+"введите номер вида +ХХХХХХХХХХХ ", Toast.LENGTH_SHORT).show();
+        		editPhone.requestFocus();
+        	    return;
+    		}
+        	
+    	}
+
     	
     	EditText editEmail = (EditText) findViewById(R.id.email);
-    	intent.putExtra("email", editEmail.getText().toString());
+    	if (editEmail.getText().toString().equals(""))
+    	{
+    		Toast.makeText(this, "Вы не ввели E-Mail", Toast.LENGTH_SHORT).show();
+    		editEmail.requestFocus();
+    	    return;
+    	}
+    	else
+    	{
+    		if (isEmailValid(editEmail.getText().toString())) { 
+    			intent.putExtra("email", editEmail.getText().toString());
+    		} else {
+    			Toast.makeText(this, "Вы ввели не корректный E-Mail", Toast.LENGTH_SHORT).show();
+        		editEmail.requestFocus();
+        	    return;
+    		}
+        	
+    	}
+
     	
     	startActivityForResult(intent, GET_ANSWER);
 	
@@ -104,12 +175,12 @@ public class MainActivity extends FragmentActivity {
     	if (requestCode == GET_ANSWER) {
     		if (resultCode == RESULT_OK) {
     			hhAnswer = data.getStringExtra(DisplayMessageActivity.HH_ANSWER);
-    			//hhAnswer = 
+
     			DialogFragment newFragment = new ShowAnswerFragment();
-    			newFragment.show(getSupportFragmentManager(), "DatePicker");
-    		}else {
-    		//	DialogFragment newFragment = new SelectDateFragment();
-    		//	newFragment.show(getSupportFragmentManager(), "DatePicker");
+    			newFragment.show(getSupportFragmentManager(), "Answer");
+    		} else {
+    			//DialogFragment newFragment = new ShowAnswerFragment();
+    			//newFragment.show(getSupportFragmentManager(), "Answer");
     		}
     	}
     }
@@ -136,9 +207,6 @@ public class MainActivity extends FragmentActivity {
 
     	  public Dialog onCreateDialog(Bundle savedInstanceState) {
     		
-    	//	Intent intent = getIntent();
-    	//	String answer = intent.getStringExtra(DisplayMessageActivity.HH_ANSWER);
-    		
     	    AlertDialog.Builder adb = new AlertDialog.Builder(getActivity())
     	        .setTitle(R.string.answerDialogTitle).setPositiveButton(R.string.yes, this)
     	        .setMessage(hhAnswer);
@@ -151,21 +219,41 @@ public class MainActivity extends FragmentActivity {
     	    case Dialog.BUTTON_POSITIVE:
     	      i = R.string.yes;
     	      break;
-
     	    }
     	    if (i > 0)
     	      Log.d(LOG_TAG, "Dialog 2: " + getResources().getString(i));
     	  }
-
-    	  public void onDismiss(DialogInterface dialog) {
-    	    super.onDismiss(dialog);
-    	    Log.d(LOG_TAG, "Dialog 2: onDismiss");
-    	  }
-
-    	  public void onCancel(DialogInterface dialog) {
-    	    super.onCancel(dialog);
-    	    Log.d(LOG_TAG, "Dialog 2: onCancel");
-    	  }
-    	}
+    	  
+    }
     
+    public static boolean isEmailValid(String email) {
+        boolean isValid = false;
+
+        String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+        CharSequence inputStr = email;
+
+        Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(inputStr);
+        if (matcher.matches()) {
+            isValid = true;
+        }
+        return isValid;
+    }
+    
+    public static boolean isPhoneValid(String phone) {
+        boolean isValid = false;
+
+        String expression = "^[+]?[0-9]{10,13}$";
+        CharSequence inputStr = phone;
+
+        Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(inputStr);
+        if (matcher.matches()) {
+            isValid = true;
+        }
+        return isValid;
+    }
+    
+    
+        
 }
