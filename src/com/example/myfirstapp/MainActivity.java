@@ -135,7 +135,7 @@ public class MainActivity extends FragmentActivity {
     		if (isPhoneValid(editPhone.getText().toString())) {
     			intent.putExtra("phone", editPhone.getText().toString());
     		} else {
-    			Toast.makeText(this, "Вы ввели не корректный номер телефона "+"\n"+"введите номер вида +ХХХХХХХХХХХ ", Toast.LENGTH_SHORT).show();
+    			Toast.makeText(this, "Вы ввели некорректный номер телефона "+"\n"+"введите номер вида +ХХХХХХХХХХХ ", Toast.LENGTH_SHORT).show();
         		editPhone.requestFocus();
         	    return;
     		}
@@ -155,7 +155,7 @@ public class MainActivity extends FragmentActivity {
     		if (isEmailValid(editEmail.getText().toString())) { 
     			intent.putExtra("email", editEmail.getText().toString());
     		} else {
-    			Toast.makeText(this, "Вы ввели не корректный E-Mail", Toast.LENGTH_SHORT).show();
+    			Toast.makeText(this, "Вы ввели некорректный E-Mail", Toast.LENGTH_SHORT).show();
         		editEmail.requestFocus();
         	    return;
     		}
